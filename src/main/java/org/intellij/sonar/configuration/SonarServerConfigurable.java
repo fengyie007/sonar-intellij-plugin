@@ -1,9 +1,6 @@
 package org.intellij.sonar.configuration;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -38,6 +35,13 @@ public class SonarServerConfigurable extends DialogWrapper {
         }
       }
     );
+    myPasswordField.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusLost(FocusEvent e) {
+        super.focusLost(e);
+        isPasswordFieldChanged = true;
+      }
+    });
     init();
   }
 
